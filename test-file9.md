@@ -1,3 +1,3 @@
 # title 
-[SomeLink](someLink.com)
+[SomeLink](SomeLink.com)
 ![Image](cat.png)
