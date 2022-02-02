@@ -39,7 +39,6 @@ public class MarkdownParseTest {
         String fileContents=Files.readString(filePath);
         ArrayList<String> list3=new ArrayList<>();
         list3.add("https://something.com");
-        list3.add("some-page.html");
         assertEquals(list3,MarkdownParse.getLinks(fileContents));
     
     }
