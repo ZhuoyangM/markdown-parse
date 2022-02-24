@@ -15,10 +15,10 @@ public class MarkdownParseTest {
         String fileName="test-file.md";
         Path filePath=Path.of(fileName);
         String fileContents=Files.readString(filePath);
-        ArrayList<String> list1=new ArrayList<>();
-        list1.add("https://something.com");
-        list1.add("some-page.html");
-        assertEquals(list1,MarkdownParse.getLinks(fileContents));
+        ArrayList<String> list=new ArrayList<>();
+        list.add("https://something.com");
+        list.add("some-page.html");
+        assertEquals(list,MarkdownParse.getLinks(fileContents));
     
     }
     @Test
@@ -26,9 +26,9 @@ public class MarkdownParseTest {
         String fileName="test-file2.md";
         Path filePath=Path.of(fileName);
         String fileContents=Files.readString(filePath);
-        ArrayList<String> list2=new ArrayList<>();
-        list2.add("https://something.com");
-        assertEquals(list2,MarkdownParse.getLinks(fileContents));
+        ArrayList<String> list=new ArrayList<>();
+        list.add("https://something.com");
+        assertEquals(list,MarkdownParse.getLinks(fileContents));
     
     }
 
@@ -37,9 +37,9 @@ public class MarkdownParseTest {
         String fileName="test-file3.md";
         Path filePath=Path.of(fileName);
         String fileContents=Files.readString(filePath);
-        ArrayList<String> list3=new ArrayList<>();
-        list3.add("https://something.com");
-        assertEquals(list3,MarkdownParse.getLinks(fileContents));
+        ArrayList<String> list=new ArrayList<>();
+        list.add("https://something.com");
+        assertEquals(list,MarkdownParse.getLinks(fileContents));
     
     }
 
@@ -48,11 +48,44 @@ public class MarkdownParseTest {
         String fileName="test-file4.md";
         Path filePath=Path.of(fileName);
         String fileContents=Files.readString(filePath);
-        ArrayList<String> list4=new ArrayList<>();
-        list4.add("https://something.com");
-        list4.add("another.html");
-        assertEquals(list4,MarkdownParse.getLinks(fileContents));
+        ArrayList<String> list=new ArrayList<>();
+        list.add("https://something.com");
+        list.add("another.html");
+        assertEquals(list,MarkdownParse.getLinks(fileContents));
     
     }
+
+    @Test
+    public void testFirstSnippet() throws IOException{
+        String fileName="test-snippet1.md";
+        Path filePath=Path.of(fileName);
+        String fileContents=Files.readString(filePath);
+        ArrayList<String> list=new ArrayList<>();
+        list.add("`google.com");
+        assertEquals(list,MarkdownParse.getLinks(fileContents));
+    }
+
+    @Test
+    public void testSecondSnippet() throws IOException{
+        String fileName="test-snippet2.md";
+        Path filePath=Path.of(fileName);
+        String fileContents=Files.readString(filePath);
+        ArrayList<String> list=new ArrayList<>();
+        list.add("a.com");
+        list.add("a.com(())");
+        list.add("example.com");
+        assertEquals(list,MarkdownParse.getLinks(fileContents));
+    }
+
+    @Test
+    public void testThirdSnippet() throws IOException{
+        String fileName="test-snippet3.md";
+        Path filePath=Path.of(fileName);
+        String fileContents=Files.readString(filePath);
+        ArrayList<String> list=new ArrayList<>();
+        list.add("https://ucsd-cse15l-w22.github.io/");
+        assertEquals(list,MarkdownParse.getLinks(fileContents));
+    }
+
 }  
 
